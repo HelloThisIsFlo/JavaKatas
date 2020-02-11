@@ -5,8 +5,8 @@ import com.google.common.base.MoreObjects;
 import java.util.Objects;
 
 public class Transaction {
-    private int amount;
-    private String date;
+    public final int amount;
+    public final String date;
 
     public Transaction(int amount, String date) {
         this.amount = amount;
