@@ -1,4 +1,4 @@
-package BankKataJava.transaction;
+package katas.bank.transaction;
 
 import java.util.ArrayList;
 import java.util.List;

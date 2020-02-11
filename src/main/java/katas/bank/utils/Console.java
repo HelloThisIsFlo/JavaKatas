@@ -1,4 +1,4 @@
-package BankKataJava.utils;
+package katas.bank.utils;
 
 public class Console {
     public void printLine(String lineToPrint) {

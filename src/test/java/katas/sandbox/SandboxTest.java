@@ -1,4 +1,4 @@
-package BankKataJava.sandbox;
+package katas.sandbox;
 
 import org.junit.Before;
 import org.junit.Test;

@@ -1,21 +1,24 @@
-package BankKataJava;
+package katas.bank;
 
-import BankKataJava.transaction.TransactionRepo;
-import BankKataJava.utils.Calendar;
-import BankKataJava.utils.Console;
-import BankKataJava.utils.StatementPrinter;
+import katas.bank.transaction.TransactionRepo;
+import katas.bank.utils.Calendar;
+import katas.bank.utils.Console;
+import katas.bank.utils.StatementPrinter;
 
-public class Main {
-    public static void main(String[] args) {
+public class BankMain {
+    public Account account;
 
+    public BankMain() {
         Console console = new Console();
 
         Calendar calendar = new Calendar();
         TransactionRepo transactionRepo = new TransactionRepo();
         StatementPrinter statementPrinter = new StatementPrinter(console);
 
-        Account account = new Account(calendar, transactionRepo, statementPrinter);
+        account = new Account(calendar, transactionRepo, statementPrinter);
+    }
 
+    public void run() {
         account.deposit(190);
         account.deposit(592);
         account.withdraw(82);

@@ -1,6 +1,6 @@
-package BankKataJava.utils;
+package katas.bank.utils;
 
-import BankKataJava.transaction.Transaction;
+import katas.bank.transaction.Transaction;
 
 import java.util.List;
 

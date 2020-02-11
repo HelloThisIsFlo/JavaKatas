@@ -1,9 +1,10 @@
-package BankKataJava;
+package katas.bank;
 
-import BankKataJava.transaction.TransactionRepo;
-import BankKataJava.utils.Calendar;
-import BankKataJava.utils.Console;
-import BankKataJava.utils.StatementPrinter;
+import katas.bank.Account;
+import katas.bank.transaction.TransactionRepo;
+import katas.bank.utils.Calendar;
+import katas.bank.utils.Console;
+import katas.bank.utils.StatementPrinter;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

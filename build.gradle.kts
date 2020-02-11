@@ -31,5 +31,5 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClassName = "BankKataJava.App"
+    mainClassName = "katas.App"
 }

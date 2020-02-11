@@ -1,8 +1,6 @@
-package BankKataJava.utils;
+package katas.bank.utils;
 
-import BankKataJava.transaction.Transaction;
-import BankKataJava.utils.Console;
-import BankKataJava.utils.StatementPrinter;
+import katas.bank.transaction.Transaction;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,4 +1,4 @@
-package BankKataJava.utils;
+package katas.bank.utils;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

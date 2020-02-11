@@ -1,4 +1,4 @@
-package BankKataJava.sandbox;
+package katas.sandbox;
 
 public class Sandbox {
     private Frank frank;

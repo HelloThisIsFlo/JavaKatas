@@ -1,9 +1,9 @@
-package BankKataJava;
+package katas.bank;
 
-import BankKataJava.transaction.Transaction;
-import BankKataJava.transaction.TransactionRepo;
-import BankKataJava.utils.Calendar;
-import BankKataJava.utils.StatementPrinter;
+import katas.bank.transaction.Transaction;
+import katas.bank.transaction.TransactionRepo;
+import katas.bank.utils.Calendar;
+import katas.bank.utils.StatementPrinter;
 
 public class Account {
     private Calendar calendar;
