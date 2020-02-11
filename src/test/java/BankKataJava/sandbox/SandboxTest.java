@@ -1,5 +1,6 @@
 package BankKataJava.sandbox;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -17,6 +18,15 @@ public class SandboxTest {
 
     @Mock
     Greeter greeterMock;
+    @Mock
+    Frank frankMock;
+
+    private Frank frankReal;
+
+    @Before
+    public void setUp() {
+        frankReal = new Frank();
+    }
 
     @Test
     public void mockFunctionWithReturnValue() {
@@ -30,8 +40,31 @@ public class SandboxTest {
         assertThat(result, containsString("frank"));
     }
 
+    @Test
+    public void mockVoidMethods() {
+        frankReal.rememberSomething("bicycle");
+        assertEquals("bicycle", frankReal.whatDidIAskYouToRemember());
+
+        frankReal.rememberSomething("sun");
+        assertEquals("sun", frankReal.whatDidIAskYouToRemember());
+
+        when(frankMock.whatDidIAskYouToRemember()).thenReturn("hello");
+        assertEquals("hello", frankMock.whatDidIAskYouToRemember());
+    }
 
     public interface Greeter {
         String greet(String name);
+    }
+
+    public static class Frank {
+        private String thingToRemember;
+
+        void rememberSomething(String thing) {
+            this.thingToRemember = thing;
+        }
+
+        String whatDidIAskYouToRemember() {
+            return this.thingToRemember;
+        }
     }
 }
