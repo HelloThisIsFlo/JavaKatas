@@ -1,5 +1,7 @@
 package BankKataJava;
 
+import com.google.common.base.MoreObjects;
+
 import java.util.Objects;
 
 public class Transaction {
@@ -23,5 +25,13 @@ public class Transaction {
     @Override
     public int hashCode() {
         return Objects.hash(amount, date);
+    }
+
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this)
+                .add("amount", amount)
+                .add("date", date)
+                .toString();
     }
 }

@@ -24,7 +24,8 @@ public class AccountAcceptanceTest {
 
     @Before
     public void setUp() {
-        account = new Account(calendarMock, null);
+        // TODO: Fix deps
+        account = new Account(calendarMock, null, null);
     }
 
     @Test
