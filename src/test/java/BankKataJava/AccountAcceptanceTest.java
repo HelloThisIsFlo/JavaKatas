@@ -1,7 +1,6 @@
 package BankKataJava;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InOrder;
@@ -24,23 +23,23 @@ public class AccountAcceptanceTest {
 
     @Before
     public void setUp() {
-        // TODO: Fix deps
-        account = new Account(calendarMock, null, null);
+        TransactionRepo transactionRepo = new TransactionRepo();
+        StatementPrinter statementPrinter = new StatementPrinter(console);
+        account = new Account(calendarMock, transactionRepo, statementPrinter);
     }
 
     @Test
-    @Ignore
     public void storeACoupleOfTransactionsAndPrintStatement() {
         // Sarah deposit £500 on her account
-        when(calendarMock.todayAsString()).thenReturn("27.01.2016");
+        mockDate("27.01.2016");
         account.deposit(500);
 
         // A couple of month later she withdraw £100
-        when(calendarMock.todayAsString()).thenReturn("03.11.2016");
+        mockDate("03.11.2016");
         account.withdraw(100);
 
         // Two years later she deposits £1300
-        when(calendarMock.todayAsString()).thenReturn("14.08.2018");
+        mockDate("14.08.2018");
         account.deposit(1300);
 
         // When printing the statement
@@ -52,5 +51,9 @@ public class AccountAcceptanceTest {
         inOrder.verify(console).printLine("27.01.2016 | +500 | 500");
         inOrder.verify(console).printLine("03.11.2016 | -100 | 400");
         inOrder.verify(console).printLine("14.08.2018 | +1300 | 1700");
+    }
+
+    private void mockDate(String date) {
+        when(calendarMock.todayAsString()).thenReturn(date);
     }
 }
