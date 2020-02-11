@@ -3,12 +3,36 @@
  */
 package BankKataJava;
 
+import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
+
+
+@RunWith(MockitoJUnitRunner.class)
 public class AppTest {
-    @Test public void testAppHasAGreeting() {
+
+    @Mock
+    Printer printer;
+
+    @Before
+    public void setUp() throws Exception {
+    }
+
+    @Test
+    public void testAppHasAGreeting() {
         App classUnderTest = new App();
         assertNotNull("app should have a greeting", classUnderTest.getGreeting());
     }
+
+    @Test
+    public void thisIsATest() {
+        App classUnderTest = new App();
+        classUnderTest.getGreeting();
+    }
+
 }
