@@ -24,7 +24,7 @@ public class AccountAcceptanceTest {
 
     @Before
     public void setUp() {
-        account = new Account();
+        account = new Account(calendarMock, null);
     }
 
     @Test
