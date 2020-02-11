@@ -1,4 +1,4 @@
-package BankKataJava;
+package BankKataJava.sandbox;
 
 public interface Printer {
     void print(String text);

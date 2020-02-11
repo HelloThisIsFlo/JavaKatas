@@ -1,4 +1,4 @@
-package BankKataJava;
+package BankKataJava.sandbox;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
