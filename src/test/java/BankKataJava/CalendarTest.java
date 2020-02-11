@@ -1,15 +1,28 @@
 package BankKataJava;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import java.time.LocalDate;
+
+import static org.junit.Assert.assertEquals;
 
 public class CalendarTest {
 
     @Test
-    @Ignore("TODO")
-    public void todayAsStringReturnsTheCurrentDateAsString() {
+    public void todayAsString_returnsTheCurrentDateAsString() {
+        LocalDate today = LocalDate.of(2020, 2, 12);
 
+        Calendar calendar = newCalendarWithMockedDate(today);
+
+        assertEquals("12/02/2020", calendar.todayAsString());
+    }
+
+    private Calendar newCalendarWithMockedDate(LocalDate today) {
+        return new Calendar() {
+            @Override
+            LocalDate today() {
+                return today;
+            }
+        };
     }
 }
