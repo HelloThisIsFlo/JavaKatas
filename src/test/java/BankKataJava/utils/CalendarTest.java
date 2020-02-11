@@ -1,5 +1,6 @@
-package BankKataJava;
+package BankKataJava.utils;
 
+import BankKataJava.utils.Calendar;
 import org.junit.Test;
 
 import java.time.LocalDate;

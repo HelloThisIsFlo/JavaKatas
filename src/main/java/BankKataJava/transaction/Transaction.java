@@ -1,4 +1,4 @@
-package BankKataJava;
+package BankKataJava.transaction;
 
 import com.google.common.base.MoreObjects;
 

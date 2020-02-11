@@ -1,8 +1,12 @@
 package BankKataJava;
 
-import org.junit.Before;
+import BankKataJava.transaction.Transaction;
+import BankKataJava.transaction.TransactionRepo;
+import BankKataJava.utils.Calendar;
+import BankKataJava.utils.StatementPrinter;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
@@ -23,12 +27,8 @@ public class AccountTest {
     @Mock
     StatementPrinter statementPrinterMock;
 
-    private Account account;
-
-    @Before
-    public void setUp() {
-        account = new Account(calendarMock, transactionRepoMock, statementPrinterMock);
-    }
+    @InjectMocks
+    Account account;
 
     @Test
     public void itShouldAddDateAndStoreADeposit() {
@@ -39,6 +39,10 @@ public class AccountTest {
         account.deposit(amount);
 
         verify(transactionRepoMock).save(new Transaction(amount, date));
+    }
+
+    private void mockDate(String date) {
+        when(calendarMock.todayAsString()).thenReturn(date);
     }
 
     @Test
@@ -65,9 +69,5 @@ public class AccountTest {
         account.printStatement();
 
         verify(statementPrinterMock).print(mockTransactions);
-    }
-
-    private void mockDate(String date) {
-        when(calendarMock.todayAsString()).thenReturn(date);
     }
 }

@@ -1,5 +1,7 @@
-package BankKataJava;
+package BankKataJava.transaction;
 
+import BankKataJava.transaction.Transaction;
+import BankKataJava.transaction.TransactionRepo;
 import org.junit.Before;
 import org.junit.Test;
 
