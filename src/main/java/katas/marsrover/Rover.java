@@ -1,9 +1,10 @@
 package katas.marsrover;
 
-public class Rover {
+import static katas.marsrover.Rover.Direction.*;
 
+public class Rover {
     public static final int GRID_SIZE = 10;
-    String direction = "N";
+    Direction direction = N;
     int coordinate_x = 0;
     int coordinate_y = 0;
 
@@ -24,59 +25,59 @@ public class Rover {
 
     private void rotateLeft() {
         switch (direction) {
-            case "N":
-                direction = "W";
+            case N:
+                direction = W;
                 break;
 
-            case "W":
-                direction = "S";
+            case W:
+                direction = S;
                 break;
 
-            case "S":
-                direction = "E";
+            case S:
+                direction = E;
                 break;
 
-            case "E":
-                direction = "N";
+            case E:
+                direction = N;
                 break;
         }
     }
 
     private void rotateRight() {
         switch (direction) {
-            case "N":
-                direction = "E";
+            case N:
+                direction = E;
                 break;
 
-            case "E":
-                direction = "S";
+            case E:
+                direction = S;
                 break;
 
-            case "S":
-                direction = "W";
+            case S:
+                direction = W;
                 break;
 
-            case "W":
-                direction = "N";
+            case W:
+                direction = N;
                 break;
         }
     }
 
     private void moveForward() {
         switch (direction) {
-            case "N":
+            case N:
                 coordinate_y += 1;
                 break;
 
-            case "E":
+            case E:
                 coordinate_x += 1;
                 break;
 
-            case "W":
+            case W:
                 coordinate_x -= 1;
                 break;
 
-            case "S":
+            case S:
                 coordinate_y -= 1;
                 break;
         }
@@ -96,5 +97,9 @@ public class Rover {
         if (coordinate >= GRID_SIZE)
             return 0;
         return coordinate;
+    }
+
+    enum Direction {
+        N, S, W, E
     }
 }

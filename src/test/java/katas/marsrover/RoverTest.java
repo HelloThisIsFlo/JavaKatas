@@ -29,22 +29,7 @@ public class RoverTest {
     }
 
     @Test
-    public void it_rotates_left_2_times_from_origin() {
-        assertRover("LL", "0:0:S");
-    }
-
-    @Test
-    public void it_rotates_left_3_times_from_origin() {
-        assertRover("LLL", "0:0:E");
-    }
-
-    @Test
-    public void it_rotates_left_4_times_from_origin() {
-        assertRover("LLLL", "0:0:N");
-    }
-
-    @Test
-    public void it_rotates_left_many_times_from_origin() {
+    public void it_rotates_left_multiple_times_from_origin() {
         assertRover("LLLLLLL", "0:0:E");
     }
 
@@ -54,45 +39,33 @@ public class RoverTest {
     }
 
     @Test
-    public void it_rotates_right_2_times_from_origin() {
-        assertRover("RR", "0:0:S");
-    }
-
-    @Test
-    public void it_rotates_right_3_times_from_origin() {
-        assertRover("RRR", "0:0:W");
-    }
-
-    @Test
-    public void it_rotates_right_4_times_from_origin() {
+    public void it_rotates_right_multiple_times_from_origin() {
         assertRover("RRRR", "0:0:N");
     }
 
     @Test
     public void it_moves_north() {
         // Rover starts facing north
-        assertRover("M", "0:1:N");
-    }
-
-    @Test
-    public void it_moves_north_multiple_times() {
         assertRover("MMMM", "0:4:N");
     }
 
     @Test
     public void it_moves_east() {
+        // Rover starts facing north
         String faceEastAndMoveForward = "RM";
         assertRover(faceEastAndMoveForward, "1:0:E");
     }
 
     @Test
     public void it_moves_west() {
+        // Rover starts facing north
         String goTo_2_0_andMoveWest = "RMMLLM";
         assertRover(goTo_2_0_andMoveWest, "1:0:W");
     }
 
     @Test
     public void it_moves_south() {
+        // Rover starts facing north
         String goTo_0_2_andMoveSouth = "MMLLM";
         assertRover(goTo_0_2_andMoveSouth, "0:1:S");
     }
