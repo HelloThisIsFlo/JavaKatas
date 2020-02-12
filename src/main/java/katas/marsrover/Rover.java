@@ -1,12 +1,14 @@
 package katas.marsrover;
 
-import static katas.marsrover.Rover.Direction.*;
-
 public class Rover {
     public static final int GRID_SIZE = 10;
-    Direction direction = N;
-    int coordinate_x = 0;
-    int coordinate_y = 0;
+    FacingDirection facingDirection;
+    WrappingCoordinates coordinates;
+
+    public Rover() {
+        coordinates = new WrappingCoordinates(0, 0, GRID_SIZE);
+        facingDirection = new FacingDirection.FacingNorth();
+    }
 
     public String execute(String commands) {
         for (String command : commands.split("")) {
@@ -24,82 +26,19 @@ public class Rover {
     }
 
     private void rotateLeft() {
-        switch (direction) {
-            case N:
-                direction = W;
-                break;
-
-            case W:
-                direction = S;
-                break;
-
-            case S:
-                direction = E;
-                break;
-
-            case E:
-                direction = N;
-                break;
-        }
+        facingDirection = facingDirection.turnLeft();
     }
 
     private void rotateRight() {
-        switch (direction) {
-            case N:
-                direction = E;
-                break;
-
-            case E:
-                direction = S;
-                break;
-
-            case S:
-                direction = W;
-                break;
-
-            case W:
-                direction = N;
-                break;
-        }
+        facingDirection = facingDirection.turnRight();
     }
 
     private void moveForward() {
-        switch (direction) {
-            case N:
-                coordinate_y += 1;
-                break;
-
-            case E:
-                coordinate_x += 1;
-                break;
-
-            case W:
-                coordinate_x -= 1;
-                break;
-
-            case S:
-                coordinate_y -= 1;
-                break;
-        }
-
-        coordinate_y = checkForWrap(coordinate_y);
-        coordinate_x = checkForWrap(coordinate_x);
+        facingDirection.moveForward(coordinates);
     }
 
     private String formatCurrentPosition() {
-        String coordinates = coordinate_x + ":" + coordinate_y;
-        return coordinates + ":" + direction;
-    }
-
-    private int checkForWrap(int coordinate) {
-        if (coordinate < 0)
-            return GRID_SIZE - 1;
-        if (coordinate >= GRID_SIZE)
-            return 0;
-        return coordinate;
-    }
-
-    enum Direction {
-        N, S, W, E
+        String formattedCoordinates = coordinates.getX() + ":" + coordinates.getY();
+        return formattedCoordinates + ":" + facingDirection;
     }
 }
