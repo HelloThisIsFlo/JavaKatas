@@ -1,4 +1,4 @@
-package marsroverwithtoni;
+package katas.marsroverwithtoni;
 
 import org.junit.Before;
 import org.junit.Ignore;

@@ -1,8 +1,8 @@
-package marsroverwithtoni;
+package katas.marsroverwithtoni;
 
 import java.util.Map;
 
-import static marsroverwithtoni.RoverWithToni.Direction.*;
+import static katas.marsroverwithtoni.RoverWithToni.Direction.*;
 
 public class RoverWithToni {
 
