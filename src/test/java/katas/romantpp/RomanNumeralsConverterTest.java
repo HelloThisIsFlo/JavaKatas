@@ -2,9 +2,9 @@ package katas.romantpp;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-public class RomanNumeralsTest {
+public class RomanNumeralsConverterTest {
     /*
      Given a positive integer number less than 4000 (eg 42) determine its
      Roman numeral representation as a String (eg "XLII").
@@ -32,8 +32,11 @@ public class RomanNumeralsTest {
      3888 -> "MMMDCCCLXXXVIII" (3000 -> "MMM" + 800 -> "DCCC" + 80 -> "LXXX" + 8 -> "VIII")
      */
 
+    RomanNumeralsConverter converter = new RomanNumeralsConverter();
+
     @Test
-    public void name() {
-        System.out.println("this is a test");
+    public void converts_1() {
+        assertEquals("I", converter.to_roman(1));
     }
+
 }
