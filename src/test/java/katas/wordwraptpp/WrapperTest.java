@@ -21,17 +21,42 @@ public class WrapperTest {
 
     @Test
     public void emptyString_returnsEmptyString() {
-        String emptyString = "";
-        assertEquals(emptyString, wrap(emptyString, 1));
+        assertWrappedText("", 100, "");
+    }
+
+    private void assertWrappedText(String text, int colNum, String expectedResult) {
+        assertEquals(expectedResult, wrap(text, colNum));
     }
 
     @Test
     public void enoughSpace_doNotWrap() {
-        String someText = "frank";
-        assertEquals(someText, wrap(someText, 100));
+        assertWrappedText("frank", 100, "frank");
     }
 
     @Test
-    public void name() {
+    public void breakBetween2Words_breakAtSpace() {
+        int colEndsInMiddleOfPatrick = 8;
+        assertWrappedText("frank patrick", colEndsInMiddleOfPatrick, "frank\npatrick");
     }
+
+    @Test
+    public void multipleWords_onlyBreakWhenGoingOverTheColLimit() {
+        int colEndsInMiddleOfSamantha = 17;
+        assertWrappedText("frank patrick samantha", colEndsInMiddleOfSamantha, "frank patrick\nsamantha");
+    }
+
+    @Test
+    public void breakInTheMiddleOfAWord() {
+        int columnSizeForcesABreakInSamantha = 7;
+        assertWrappedText(
+                "frank patrick samantha",
+                columnSizeForcesABreakInSamantha,
+                "frank\npatrick\nsamanth\na"
+        );
+    }
+
+    //    @Test7
+//    public void singleWord_notEnoughSpace_breakInMiddleOfWord() {
+//        assertWrappedText("frank", 4, "fran\nk");
+//    }
 }
