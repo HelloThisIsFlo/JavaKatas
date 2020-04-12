@@ -4,30 +4,16 @@ public class Wrapper {
 
     public static final int NOT_FOUND = -1;
 
-    private final int colSize;
-
-    private Wrapper(int colSize) {
-        this.colSize = colSize;
-    }
-
     public static String wrap(String text, int colSize) {
-        return new Wrapper(colSize).wrap(text);
-    }
-
-    private String insertBreak(String text, int breakStart, int breakEnd) {
-        return text.substring(0, breakStart) + '\n' + wrap(text.substring(breakEnd), colSize);
-    }
-
-    private String wrap(String text) {
         if (text.length() < colSize) return text;
 
-        int indexOfLastSpace = text.substring(0, colSize).lastIndexOf(' ');
+        String substringForTheFirstColumn = text.substring(0, colSize);
+        int indexOfLastSpace = substringForTheFirstColumn.lastIndexOf(' ');
         boolean hasSpace = indexOfLastSpace != NOT_FOUND;
-
         if (hasSpace) {
-            return insertBreak(text, indexOfLastSpace, indexOfLastSpace + 1);
+            return text.substring(0, indexOfLastSpace) + '\n' + wrap(text.substring(indexOfLastSpace + 1), colSize);
         } else {
-            return insertBreak(text, colSize, colSize);
+            return text.substring(0, colSize) + '\n' + wrap(text.substring(colSize), colSize);
         }
     }
 
@@ -42,6 +28,21 @@ public class Wrapper {
      12 | Function | multipleWords_onlyBreakWhenGoingOverTheColLimit()
      10 | Loop | multipleWords_onlyBreakWhenGoingOverTheColLimit()
      6 | Conditional | multipleWords_onlyBreakWhenGoingOverTheColLimit()
+
+     --------------------
+
+     Path 1 (optimized):
+     SHARED: emptyString_returnsEmptyString()
+     SHARED: enoughSpace_doNotWrap()
+
+     12 | Function | breakBetween2Words_breakAtSpace()
+
+     12 | Function | multipleWords_onlyBreakWhenGoingOverTheColLimit()
+     6 | Conditional | multipleWords_onlyBreakWhenGoingOverTheColLimit()
+
+     6 | Conditional | wordTooLongForOneColumn
+
+     9 | Tail-Recursion | breakInTheMiddleOfAWord
 
 
      -------------------

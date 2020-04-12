@@ -34,33 +34,33 @@ public class WrapperTest {
         assertWrappedText("frank", 100, "frank");
     }
 
-    @Test
-    public void singleWord_notEnoughSpace_breakInMiddleOfWord() {
-        assertWrappedText("frank", 4, "fran\nk");
-    }
-
-    @Test
-    public void breakBetween2Words_breakAtSpace_path2() {
-        int colEndsInMiddleOfPatrick = 8;
-        assertWrappedText("frank patrick", colEndsInMiddleOfPatrick, "frank\npatrick");
-    }
-
-    @Test
-    public void multipleWords_oneOnEachLine() {
-        int oneWordOnEachLine = 8;
-        assertWrappedText("frank patrick sarah", oneWordOnEachLine, "frank\npatrick\nsarah");
-    }
-
-    @Test
-    public void wordTooLongToFitOn2Lines_breakMultipleTimesOnSameWord() {
-        assertWrappedText("thisIsASuperLongWord!", 5, "thisI\nsASup\nerLon\ngWord\n!");
-    }
-
-    @Test
-    public void multipleWhitespacesTogetherOnTheSameLine() {
-        int breakInMiddleOfSarah = 22;
-        assertWrappedText("hello frank this is sarah", breakInMiddleOfSarah, "hello frank this is\nsarah");
-    }
+//    @Test
+//    public void singleWord_notEnoughSpace_breakInMiddleOfWord() {
+//        assertWrappedText("frank", 4, "fran\nk");
+//    }
+//
+//    @Test
+//    public void breakBetween2Words_breakAtSpace_path2() {
+//        int colEndsInMiddleOfPatrick = 8;
+//        assertWrappedText("frank patrick", colEndsInMiddleOfPatrick, "frank\npatrick");
+//    }
+//
+//    @Test
+//    public void multipleWords_oneOnEachLine() {
+//        int oneWordOnEachLine = 8;
+//        assertWrappedText("frank patrick sarah", oneWordOnEachLine, "frank\npatrick\nsarah");
+//    }
+//
+//    @Test
+//    public void wordTooLongToFitOn2Lines_breakMultipleTimesOnSameWord() {
+//        assertWrappedText("thisIsASuperLongWord!", 5, "thisI\nsASup\nerLon\ngWord\n!");
+//    }
+//
+//    @Test
+//    public void multipleWhitespacesTogetherOnTheSameLine() {
+//        int breakInMiddleOfSarah = 22;
+//        assertWrappedText("hello frank this is sarah", breakInMiddleOfSarah, "hello frank this is\nsarah");
+//    }
 
     /*
      * [x] Multiple whitespaces together on the same line
@@ -70,27 +70,40 @@ public class WrapperTest {
      */
 
     @Test
-    @Ignore("Path 1")
+//    @Ignore("Path 1")
     public void breakBetween2Words_breakAtSpace() {
         int colEndsInMiddleOfPatrick = 8;
         assertWrappedText("frank patrick", colEndsInMiddleOfPatrick, "frank\npatrick");
     }
 
     @Test
-    @Ignore("Path 1")
     public void multipleWords_onlyBreakWhenGoingOverTheColLimit() {
         int colEndsInMiddleOfSamantha = 17;
         assertWrappedText("frank patrick samantha", colEndsInMiddleOfSamantha, "frank patrick\nsamantha");
     }
 
     @Test
-    @Ignore("Path 1")
+    public void wordTooLongForOneColumn() {
+        assertWrappedText("ThisIsALongWord", 8, "ThisIsAL\nongWord");
+    }
+
+    @Test
     public void breakInTheMiddleOfAWord() {
-        int columnSizeForcesABreakInSamantha = 7;
+        int columnSizeForcesABreakInSamantha = 9;
         assertWrappedText(
-                "frank patrick samantha",
+                "frank patrick thisIsALongWord",
                 columnSizeForcesABreakInSamantha,
-                "frank\npatrick\nsamanth\na"
+                "frank\npatrick\nthisIsALo\nngWord"
+        );
+    }
+
+    @Test
+    public void breakInTheMiddleOfAWord_alt() {
+        int columnSizeForcesABreakInSamantha = 9;
+        assertWrappedText(
+                "frank thisIsALongWord patrick",
+                columnSizeForcesABreakInSamantha,
+                "frank\nthisIsALo\nngWord\npatrick"
         );
     }
 }
