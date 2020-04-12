@@ -1,5 +1,6 @@
 package katas.wordwraptpp;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static katas.wordwraptpp.Wrapper.wrap;
@@ -24,8 +25,8 @@ public class WrapperTest {
         assertWrappedText("", 100, "");
     }
 
-    private void assertWrappedText(String text, int colNum, String expectedResult) {
-        assertEquals(expectedResult, wrap(text, colNum));
+    private void assertWrappedText(String text, int colSize, String expectedResult) {
+        assertEquals(expectedResult, wrap(text, colSize));
     }
 
     @Test
@@ -34,18 +35,56 @@ public class WrapperTest {
     }
 
     @Test
+    public void singleWord_notEnoughSpace_breakInMiddleOfWord() {
+        assertWrappedText("frank", 4, "fran\nk");
+    }
+
+    @Test
+    public void breakBetween2Words_breakAtSpace_path2() {
+        int colEndsInMiddleOfPatrick = 8;
+        assertWrappedText("frank patrick", colEndsInMiddleOfPatrick, "frank\npatrick");
+    }
+
+    @Test
+    public void multipleWords_oneOnEachLine() {
+        int oneWordOnEachLine = 8;
+        assertWrappedText("frank patrick sarah", oneWordOnEachLine, "frank\npatrick\nsarah");
+    }
+
+    @Test
+    public void wordTooLongToFitOn2Lines_breakMultipleTimesOnSameWord() {
+        assertWrappedText("thisIsASuperLongWord!", 5, "thisI\nsASup\nerLon\ngWord\n!");
+    }
+
+    @Test
+    public void multipleWhitespacesTogetherOnTheSameLine() {
+        int breakInMiddleOfSarah = 22;
+        assertWrappedText("hello frank this is sarah", breakInMiddleOfSarah, "hello frank this is\nsarah");
+    }
+
+    /*
+     * [x] Multiple whitespaces together on the same line
+     * [x] Word too long to fit on 2 lines -> Multiple breaks in same word
+     * [x] Multiple words, one on each line
+     * [ ] Multiple whitespaces together on the same line but word being cut too long to be on one line
+     */
+
+    @Test
+    @Ignore("Path 1")
     public void breakBetween2Words_breakAtSpace() {
         int colEndsInMiddleOfPatrick = 8;
         assertWrappedText("frank patrick", colEndsInMiddleOfPatrick, "frank\npatrick");
     }
 
     @Test
+    @Ignore("Path 1")
     public void multipleWords_onlyBreakWhenGoingOverTheColLimit() {
         int colEndsInMiddleOfSamantha = 17;
         assertWrappedText("frank patrick samantha", colEndsInMiddleOfSamantha, "frank patrick\nsamantha");
     }
 
     @Test
+    @Ignore("Path 1")
     public void breakInTheMiddleOfAWord() {
         int columnSizeForcesABreakInSamantha = 7;
         assertWrappedText(
@@ -54,9 +93,4 @@ public class WrapperTest {
                 "frank\npatrick\nsamanth\na"
         );
     }
-
-    //    @Test7
-//    public void singleWord_notEnoughSpace_breakInMiddleOfWord() {
-//        assertWrappedText("frank", 4, "fran\nk");
-//    }
 }
