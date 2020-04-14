@@ -1,5 +1,7 @@
 package katas.stringcalculator;
 
+import static java.lang.Integer.parseInt;
+
 public class StringCalculator {
 
     public static int add(String numbers) {
@@ -9,12 +11,13 @@ public class StringCalculator {
             return 0;
         }
 
-        int sum = 0;
-        for (String number: extractNumbers(numbers)) {
-            sum += Integer.parseInt(number);
+        String[] numbersArray = numbers.split(",");
+        if (numbersArray.length == 1) {
+            return parseInt(numbersArray[0]);
+        } else {
+            return parseInt(numbersArray[0])
+                    + parseInt(numbersArray[1]);
         }
-
-        return sum;
     }
 
     private static String[] extractNumbers(String numbers) {
