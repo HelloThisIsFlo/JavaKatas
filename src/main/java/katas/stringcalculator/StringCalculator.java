@@ -12,16 +12,13 @@ public class StringCalculator {
         }
 
         String[] numbersArray = numbers.split(",");
-        if (numbersArray.length == 1) {
-            return parseInt(numbersArray[0]);
-        } else {
-            return parseInt(numbersArray[0])
-                    + parseInt(numbersArray[1]);
-        }
-    }
 
-    private static String[] extractNumbers(String numbers) {
-        return numbers.split(",");
+        int sum = 0;
+        for (String number: numbersArray) {
+           sum += parseInt(number);
+        }
+
+        return sum;
     }
 
     private static void validateNumbers(String numbers) {
