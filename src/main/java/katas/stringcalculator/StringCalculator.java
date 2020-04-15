@@ -7,32 +7,42 @@ import static java.lang.Integer.parseInt;
 
 public class StringCalculator {
 
+    private String numbersInput;
+    private boolean hasCustomDelimiter;
+    private Matcher matcherForNumbersInput;
+
+    private StringCalculator(String numbersInput) {
+        this.numbersInput = numbersInput;
+        validateNumbersInput();
+        this.matcherForNumbersInput = getMatcherForNumbersInput();
+        this.hasCustomDelimiter = numbersInput.startsWith("//");
+    }
+
+    private void validateNumbersInput() {
+        if (numbersInput == null) {
+            throw new NumberStringError("String of numbers can not be null");
+        }
+    }
+
+    private Matcher getMatcherForNumbersInput() {
+        String regex = "^//(.)\\n(.*)";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(numbersInput);
+        matcher.find();
+        return matcher;
+    }
+
     public static int add(String numbersInput) {
-        validateNumbers(numbersInput);
+        return new StringCalculator(numbersInput).add();
+    }
 
-        if (numbersInput.length() == 0) {
-            return 0;
-        }
+    public int add() {
+        if (isEmptyInput()) return 0;
 
-        boolean hasCustomDelimiter = numbersInput.startsWith("//");
-
-        String delimiter;
-        String numbers;
-        if (hasCustomDelimiter) {
-            String regex = "^//(.)\\n(.*)";
-            Pattern pattern = Pattern.compile(regex);
-            Matcher matcher = pattern.matcher(numbersInput);
-            matcher.find();
-
-            delimiter = matcher.group(1);
-            numbers = matcher.group(2);
-        } else {
-            delimiter = ",";
-            numbers = numbersInput;
-        }
+        String delimiter = getDelimiter();
+        String numbers = getNumbers();
 
         String[] numbersArray = numbers.split("[" + delimiter + "\n]");
-
 
         int sum = 0;
         for (String number : numbersArray) {
@@ -44,12 +54,23 @@ public class StringCalculator {
         return sum;
     }
 
+    private boolean isEmptyInput() {
+        return numbersInput.length() == 0;
+    }
 
+    private String getDelimiter() {
+        if (hasCustomDelimiter) {
+            return matcherForNumbersInput.group(1);
+        } else {
+            return ",";
+        }
+    }
 
-
-    private static void validateNumbers(String numbers) {
-        if (numbers == null) {
-            throw new NumberStringError("String of numbers can not be null");
+    private String getNumbers() {
+        if (hasCustomDelimiter) {
+            return matcherForNumbersInput.group(2);
+        } else {
+            return numbersInput;
         }
     }
 
