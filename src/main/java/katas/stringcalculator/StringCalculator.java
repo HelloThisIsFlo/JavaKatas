@@ -7,37 +7,32 @@ import static java.lang.Integer.parseInt;
 
 public class StringCalculator {
 
-    public static int add(String numbers) {
-        validateNumbers(numbers);
+    public static int add(String numbersInput) {
+        validateNumbers(numbersInput);
 
-        if (numbers.length() == 0) {
+        if (numbersInput.length() == 0) {
             return 0;
         }
 
-        boolean hasCustomDelimiter = numbers.startsWith("//");
-        if (hasCustomDelimiter) {
+        boolean hasCustomDelimiter = numbersInput.startsWith("//");
 
+        String delimiter;
+        String numbers;
+        if (hasCustomDelimiter) {
             String regex = "^//(.)\\n(.*)";
             Pattern pattern = Pattern.compile(regex);
-            Matcher matcher = pattern.matcher(numbers);
+            Matcher matcher = pattern.matcher(numbersInput);
             matcher.find();
 
-            String delimiter = matcher.group(1);
-            String numbersRENAME = matcher.group(2);
-
-            String[] numbersArray = numbersRENAME.split("[" + delimiter + "\n]");
-            int sum = 0;
-            for (String number : numbersArray) {
-                if (!number.isEmpty()) {
-                    sum += parseInt(number);
-                }
-            }
-
-
-            return sum;
+            delimiter = matcher.group(1);
+            numbers = matcher.group(2);
+        } else {
+            delimiter = ",";
+            numbers = numbersInput;
         }
 
-        String[] numbersArray = numbers.split("[,\n]");
+        String[] numbersArray = numbers.split("[" + delimiter + "\n]");
+
 
         int sum = 0;
         for (String number : numbersArray) {
@@ -48,6 +43,9 @@ public class StringCalculator {
 
         return sum;
     }
+
+
+
 
     private static void validateNumbers(String numbers) {
         if (numbers == null) {

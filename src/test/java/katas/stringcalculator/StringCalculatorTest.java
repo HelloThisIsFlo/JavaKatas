@@ -91,7 +91,9 @@ public class StringCalculatorTest {
 
     // TODO: Add a test to clarify if the delimiter finishes with '\n' or is always 1 char
     // 1) Let's assume delimiter can NOT be a newline
-    // 2) Let's add a test to ensure that newline CAN be a delimiter
+    // 2) Let's add a test to ensure that newline CAN be a delimiter.
+    // 1bis) Let's assume that there can only be ONE delimiter at a time.
+    // 2bis) Prove there can only be ONE delimiter at the time.
 
     @Test
     public void learningTest_captureGroups() {
