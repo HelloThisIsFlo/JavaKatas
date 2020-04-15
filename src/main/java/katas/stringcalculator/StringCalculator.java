@@ -1,5 +1,8 @@
 package katas.stringcalculator;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import static java.lang.Integer.parseInt;
 
 public class StringCalculator {
@@ -11,11 +14,36 @@ public class StringCalculator {
             return 0;
         }
 
+        boolean hasCustomDelimiter = numbers.startsWith("//");
+        if (hasCustomDelimiter) {
+
+            String regex = "^//(.)\\n(.*)";
+            Pattern pattern = Pattern.compile(regex);
+            Matcher matcher = pattern.matcher(numbers);
+            matcher.find();
+
+            String delimiter = matcher.group(1);
+            String numbersRENAME = matcher.group(2);
+
+            String[] numbersArray = numbersRENAME.split("[" + delimiter + "\n]");
+            int sum = 0;
+            for (String number : numbersArray) {
+                if (!number.isEmpty()) {
+                    sum += parseInt(number);
+                }
+            }
+
+
+            return sum;
+        }
+
         String[] numbersArray = numbers.split("[,\n]");
 
         int sum = 0;
-        for (String number: numbersArray) {
-           sum += parseInt(number);
+        for (String number : numbersArray) {
+            if (!number.isEmpty()) {
+                sum += parseInt(number);
+            }
         }
 
         return sum;

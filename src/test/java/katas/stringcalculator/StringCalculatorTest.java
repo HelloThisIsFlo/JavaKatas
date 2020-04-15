@@ -4,7 +4,11 @@ import katas.stringcalculator.StringCalculator.NumberStringError;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class StringCalculatorTest {
     /*
@@ -83,5 +87,23 @@ public class StringCalculatorTest {
     public void canSupportDifferentDelimiters() {
         int result = StringCalculator.add("//;\n1;2");
         assertEquals(1 + 2, result);
+    }
+
+    // TODO: Add a test to clarify if the delimiter finishes with '\n' or is always 1 char
+    // 1) Let's assume delimiter can NOT be a newline
+    // 2) Let's add a test to ensure that newline CAN be a delimiter
+
+    @Test
+    public void learningTest_captureGroups() {
+        String line = "#first#second,third";
+        String regex = "^#(.*)#(.*),(.*)";
+
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(line);
+
+        assertTrue(matcher.find());
+        assertEquals("first", matcher.group(1));
+        assertEquals("second", matcher.group(2));
+        assertEquals("third", matcher.group(3));
     }
 }
