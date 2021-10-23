@@ -12,14 +12,14 @@ plugins {
 }
 
 repositories {
-    jcenter()
+    mavenCentral()
 }
 
 dependencies {
-    implementation("com.google.guava:guava:28.1-jre")
+    implementation("com.google.guava:guava:31.0.1-jre")
 
-    testImplementation("org.mockito:mockito-core:2.+")
-    testImplementation("junit:junit:4.12")
+    testImplementation("org.mockito:mockito-core:4.0.0")
+    testImplementation("junit:junit:4.13.2")
 }
 
 application {
