@@ -17,6 +17,7 @@ repositories {
 
 dependencies {
     implementation("com.google.guava:guava:31.0.1-jre")
+    implementation("org.apache.commons:commons-lang3:3.12.0")
 
     testImplementation("org.mockito:mockito-core:4.0.0")
     testImplementation("junit:junit:4.13.2")
