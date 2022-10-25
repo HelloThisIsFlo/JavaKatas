@@ -1,70 +1,61 @@
 package katas.sandbox;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SandboxTest {
 
-    @Mock
-    Greeter greeterMock;
-    @Mock
-    Frank frankMock;
+  interface Thing {
 
-    private Frank frankReal;
+    String sayHi();
+  }
 
-    @Before
-    public void setUp() {
-        frankReal = new Frank();
+  static class RealThing implements Thing {
+
+    @Override
+    public String sayHi() {
+      return "hi";
+    }
+  }
+
+  static class DecoratorThing implements Thing {
+
+    private final Thing thing;
+
+    public DecoratorThing(Thing thing) {this.thing = thing;}
+
+    @Override
+    public String sayHi() {
+      return thing.sayHi();
     }
 
-    @Test
-    public void mockFunctionWithReturnValue() {
-        when(greeterMock.greet(any())).thenReturn("hello frank");
+  }
 
-        String result = greeterMock.greet("WHATEVER");
+  public static DecoratorThing decorate(Thing thing) {
+    if (thing instanceof DecoratorThing) return (DecoratorThing) thing;
 
-        verify(greeterMock).greet("WHATEVER");
-        assertEquals("hello frank", result);
+    return new DecoratorThing(thing);
+  }
 
-        assertThat(result, containsString("frank"));
-    }
+  @Test
+  public void name() {
 
-    @Test
-    public void mockVoidMethods() {
-        frankReal.rememberSomething("bicycle");
-        assertEquals("bicycle", frankReal.whatDidIAskYouToRemember());
+    Thing realThing = new RealThing();
+    Thing decoratedOnce = decorate(realThing);
+    Thing decoratedTwice = decorate(decoratedOnce);
 
-        frankReal.rememberSomething("sun");
-        assertEquals("sun", frankReal.whatDidIAskYouToRemember());
+    assertEquals(decoratedOnce, decoratedTwice);
 
-        when(frankMock.whatDidIAskYouToRemember()).thenReturn("hello");
-        assertEquals("hello", frankMock.whatDidIAskYouToRemember());
-    }
-
-    public interface Greeter {
-        String greet(String name);
-    }
-
-    public static class Frank {
-        private String thingToRemember;
-
-        void rememberSomething(String thing) {
-            this.thingToRemember = thing;
-        }
-
-        String whatDidIAskYouToRemember() {
-            return this.thingToRemember;
-        }
-    }
+  }
 }
