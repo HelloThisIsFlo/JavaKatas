@@ -1,22 +1,23 @@
 package katas.marsroverwithtoni;
 
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+
 
 public class RoverWithToniTest {
 
     RoverWithToni rover;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         rover = new RoverWithToni();
     }
 
     @Test
-    @Ignore("Acceptance TODO")
+    @Disabled("Acceptance TODO")
     public void acceptance_noObstacle_noWrap() {
         assertRover("MMRMMLMLMLM", "1:2:S");
     }
@@ -26,7 +27,7 @@ public class RoverWithToniTest {
     }
 
     @Test
-    @Ignore("Acceptance TODO")
+    @Disabled("Acceptance TODO")
     public void acceptance_noObstacle_withWrap() {
         assertRover("MMMMMMMMMM", "0:0:N");
     }

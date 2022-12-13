@@ -16,11 +16,15 @@ repositories {
 }
 
 dependencies {
-    implementation("com.google.guava:guava:31.0.1-jre")
+    implementation("com.google.guava:guava:31.1-jre")
+
     implementation("org.apache.commons:commons-lang3:3.12.0")
 
-    testImplementation("org.mockito:mockito-core:4.0.0")
-    testImplementation("junit:junit:4.13.2")
+    testImplementation("org.mockito:mockito-core:4.8.0")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.0")
+    testImplementation("org.junit.vintage:junit-vintage-engine:5.9.0")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.0")
+
 }
 
 application {
