@@ -1,18 +1,18 @@
 package katas.bowling;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static katas.bowling.Game.NUM_OF_FRAMES;
 import static katas.bowling.Game.ROLLS_PER_FRAME;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GameTest {
 
     private static final int NUM_OF_ROLLS = NUM_OF_FRAMES * ROLLS_PER_FRAME;
     Game game;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         game = new Game();
     }

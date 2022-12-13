@@ -1,14 +1,18 @@
 package katas.stringcalculator;
 
 import katas.stringcalculator.StringCalculator.NumberStringError;
-import org.junit.Ignore;
-import org.junit.Test;
+import katas.wordwrap.Wrapper;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static katas.wordwrap.Wrapper.wrapPremise;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 public class StringCalculatorTest {
     /*
@@ -22,9 +26,12 @@ public class StringCalculatorTest {
         assertEquals(0, result);
     }
 
-    @Test(expected = NumberStringError.class)
+    @Test
     public void nullString_throwsInvalidNumberStringError() {
-        StringCalculator.add(null);
+        assertThrows(
+            NumberStringError.class,
+            () -> StringCalculator.add(null)
+        );
     }
 
     @Test
@@ -69,7 +76,7 @@ public class StringCalculatorTest {
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void canUseNewlineAsSeparator() {
         // Just a different formulation of the previous test
     }

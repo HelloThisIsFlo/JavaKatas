@@ -1,21 +1,21 @@
 package katas.bank;
 
-import katas.bank.Account;
 import katas.bank.transaction.TransactionRepo;
 import katas.bank.utils.Calendar;
 import katas.bank.utils.Console;
 import katas.bank.utils.StatementPrinter;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.when;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class AccountAcceptanceTest {
 
     @Mock
@@ -26,7 +26,7 @@ public class AccountAcceptanceTest {
 
     private Account account;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         TransactionRepo transactionRepo = new TransactionRepo();
         StatementPrinter statementPrinter = new StatementPrinter(console);

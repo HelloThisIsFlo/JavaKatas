@@ -1,15 +1,16 @@
 package katas.marsrover;
 
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 
 public class WrappingCoordinatesTest {
     private static final int GRID_SIZE = 10;
     WrappingCoordinates wrappingCoordinates;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         wrappingCoordinates = new WrappingCoordinates(0, 0, GRID_SIZE);
     }

@@ -1,26 +1,26 @@
 package katas.sandbox;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.MockedStatic;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.mockStatic;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class SandboxTest {
 
 
   private SomeOtherClass someOtherClass;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     someOtherClass = new SomeOtherClass();
   }
@@ -33,7 +33,10 @@ public class SandboxTest {
 
   @Test
   public void greetInFrench() {
-    String greeting = someOtherClass.greet("Nicola");
-    assertEquals("Bonjour Nicola!", greeting);
+    try (MockedStatic mocked = mockStatic(SomeClassWithStaticMethod.class)) {
+      mocked.when(SomeClassWithStaticMethod::hello).thenReturn("Bonjour");
+      String greeting = someOtherClass.greet("Nicola");
+      assertEquals("Bonjour Nicola!", greeting);
+    }
   }
 }

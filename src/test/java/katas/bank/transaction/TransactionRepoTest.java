@@ -1,16 +1,17 @@
 package katas.bank.transaction;
 
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
 
 public class TransactionRepoTest {
     private TransactionRepo transactionRepo;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         transactionRepo = new TransactionRepo();
     }

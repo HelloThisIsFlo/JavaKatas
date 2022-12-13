@@ -1,15 +1,16 @@
 package katas.marsrover;
 
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+
 
 public class RoverAcceptanceTest {
     Rover rover;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         rover = new Rover();
     }
@@ -29,7 +30,7 @@ public class RoverAcceptanceTest {
     }
 
     @Test
-    @Ignore("todo")
+    @Disabled("todo")
     public void obstacles_RENAME() {
         // TODO: to implement
         /* given a grid with an obstacle at (0, 3), input MMMM gives output O:0:2:N */

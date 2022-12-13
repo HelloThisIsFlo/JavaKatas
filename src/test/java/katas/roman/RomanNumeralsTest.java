@@ -1,9 +1,12 @@
 package katas.roman;
 
-import org.junit.Ignore;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import static org.junit.Assert.assertEquals;
+import katas.stringcalculator.StringCalculator;
+import katas.stringcalculator.StringCalculator.NumberStringError;
+import org.junit.jupiter.api.Test;
+
 
 public class RomanNumeralsTest {
 
@@ -84,15 +87,23 @@ public class RomanNumeralsTest {
         assertRoman(3000, "MMM");
     }
 
-    @Test(expected = RomanNumerals.InvalidNumber.class)
+    @Test
     public void number_too_high() {
-        RomanNumerals.toRoman(4000);
+        assertThrows(
+            RomanNumerals.InvalidNumber.class,
+            () -> RomanNumerals.toRoman(4000)
+        );
     }
 
-    @Test(expected = RomanNumerals.InvalidNumber.class)
+    @Test
     public void number_zero_or_below() {
-        RomanNumerals.toRoman(0);
-        RomanNumerals.toRoman(-1);
+        assertThrows(
+            RomanNumerals.InvalidNumber.class,
+            () -> {
+                RomanNumerals.toRoman(0);
+                RomanNumerals.toRoman(-1);
+            }
+        );
     }
 
     @Test

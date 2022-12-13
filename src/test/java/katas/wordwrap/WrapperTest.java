@@ -1,11 +1,12 @@
 package katas.wordwrap;
 
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import static katas.wordwrap.Wrapper.wrap;
 import static katas.wordwrap.Wrapper.wrapPremise;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class WrapperTest {
     @Test
@@ -19,13 +20,13 @@ public class WrapperTest {
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void oneWordPerLine() {
         assertEquals("word\nword", wrap("word word", 5));
     }
 
     @Test
-    @Ignore("Too much of a big leap")
+    @Disabled("Too much of a big leap")
     public void moreThanOneWordPerLine() {
         assertEquals("word word\nword", wrap("word word word", 10));
     }
@@ -46,9 +47,12 @@ public class WrapperTest {
         assertEquals("", wrapPremise("", 10));
     }
 
-    @Test(expected = Wrapper.InvalidArgument.class)
+    @Test
     public void invalidArg() {
-        wrapPremise("abc", 0);
+        assertThrows(
+            Wrapper.InvalidArgument.class,
+            () -> wrapPremise("abc", 0)
+        );
     }
 
     @Test
@@ -57,7 +61,7 @@ public class WrapperTest {
     }
 
     @Test
-    @Ignore
+    @Disabled
     public void TwoWordsLongerThanLimitShouldWrap() throws Exception {
         assertEquals("word\nword", wrapPremise("word word", 6));
     }

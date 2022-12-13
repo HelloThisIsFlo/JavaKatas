@@ -21,12 +21,20 @@ dependencies {
     implementation("org.apache.commons:commons-lang3:3.12.0")
 
     testImplementation("org.mockito:mockito-core:4.8.0")
+    testImplementation("org.mockito:mockito-junit-jupiter:4.8.0")
+    testImplementation("org.mockito:mockito-inline:4.8.0")
+
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.0")
-    testImplementation("org.junit.vintage:junit-vintage-engine:5.9.0")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.0")
 
 }
 
 application {
     mainClassName = "katas.App"
+}
+
+tasks {
+    test {
+        useJUnitPlatform {}
+    }
 }
