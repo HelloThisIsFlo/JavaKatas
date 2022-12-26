@@ -30,7 +30,7 @@ dependencies {
 }
 
 application {
-    mainClassName = "katas.App"
+    mainClass.set("katas.App")
 }
 
 tasks {
