@@ -1,4 +1,4 @@
-package leetcode.arrays.longestpeak;
+package algoexpert.array.longestpeak;
 
 
 class Program {
