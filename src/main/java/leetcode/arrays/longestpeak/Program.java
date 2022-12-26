@@ -1,8 +1,6 @@
 package leetcode.arrays.longestpeak;
 
 
-import java.util.*;
-
 class Program {
 
   private final int[] array;
@@ -14,27 +12,21 @@ class Program {
   }
 
   public int longestPeak() {
-    return findPeaks()
-        .stream()
-        .map(this::expandPeak)
-        .max(Integer::compareTo)
-        .orElse(0);
-  }
-
-  private List<Integer> findPeaks() {
-    List<Integer> peakIdx = new ArrayList<>();
+    int longestPeak = 0;
     for (int i = 1; i < array.length - 1; i++) {
       if (array[i - 1] < array[i] && array[i] > array[i + 1]) {
-        peakIdx.add(i);
+        int peakLength = findPeakLength(i);
+        if (peakLength > longestPeak) {longestPeak = peakLength;}
       }
     }
-    return peakIdx;
+    return longestPeak;
   }
 
-  private int expandPeak(int peakIdx) {
+
+  private int findPeakLength(int peakIdx) {
     int start = peakIdx;
     int end = peakIdx;
-    int peakLength  = 1;
+    int peakLength = 1;
     do {
       start--;
       peakLength++;
@@ -47,4 +39,6 @@ class Program {
 
     return peakLength;
   }
+
+
 }
