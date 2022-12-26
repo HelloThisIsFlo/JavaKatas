@@ -37,4 +37,7 @@ tasks {
     test {
         useJUnitPlatform {}
     }
+    withType<JavaCompile> {
+        options.compilerArgs.add("-Xlint:unchecked")
+    }
 }
