@@ -33,7 +33,7 @@ public class SandboxTest {
 
   @Test
   public void greetInFrench() {
-    try (MockedStatic mocked = mockStatic(SomeClassWithStaticMethod.class)) {
+    try (MockedStatic<SomeClassWithStaticMethod> mocked = mockStatic(SomeClassWithStaticMethod.class)) {
       mocked.when(SomeClassWithStaticMethod::hello).thenReturn("Bonjour");
       String greeting = someOtherClass.greet("Nicola");
       assertEquals("Bonjour Nicola!", greeting);
