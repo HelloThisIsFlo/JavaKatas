@@ -1,6 +1,13 @@
 package multithreading.educativeio;
 
+import java.util.ArrayList;
+import java.util.List;
+import org.checkerframework.checker.units.qual.A;
+
 public class InterruptShowcase {
+
+  volatile int asdf = 0;
+  volatile List<Integer> asdfasdf = new ArrayList<>();
 
   public static void main(String[] args) throws Exception {
     Thread thread = new Thread(() -> {
