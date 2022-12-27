@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 class ThreadSandboxTest {
 
   @Test
-  void runSandbox() {
+  void runSandbox() throws Exception {
     new ThreadSandbox().runSandbox();
   }
 }

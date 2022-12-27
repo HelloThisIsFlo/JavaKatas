@@ -1,9 +1,11 @@
 package multithreading.educativeio;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 class RaceCondition {
 
   public static final int MAX = 1000000;
-  public int number = 0;
+  public AtomicInteger number = new AtomicInteger(0);
 
   public static void main(String[] args) throws InterruptedException {
     RaceCondition.runTest();
@@ -26,7 +28,7 @@ class RaceCondition {
   void increment() {
     for (int i = 0; i < MAX; i++) {
       synchronized (this) {
-        number++;
+        number.incrementAndGet();
       }
     }
   }
@@ -34,7 +36,7 @@ class RaceCondition {
   void decrement() {
     for (int i = 0; i < MAX; i++) {
       synchronized (this) {
-        number--;
+        number.decrementAndGet();
       }
     }
   }
