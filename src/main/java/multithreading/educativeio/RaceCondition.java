@@ -25,13 +25,17 @@ class RaceCondition {
 
   void increment() {
     for (int i = 0; i < MAX; i++) {
-      number++;
+      synchronized (this) {
+        number++;
+      }
     }
   }
 
   void decrement() {
     for (int i = 0; i < MAX; i++) {
-      number--;
+      synchronized (this) {
+        number--;
+      }
     }
   }
 }
