@@ -28,6 +28,7 @@ public class ThreadSandbox {
     benchmark("single", this::singleThreaded);
 
 
+    executorService.shutdown();
   }
 
   private void benchmark(String tag, RunnableWithException runnable) throws Exception {
